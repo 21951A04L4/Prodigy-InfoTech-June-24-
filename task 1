@@ -1,0 +1,64 @@
+"""PRODIGY INFOTECH 
+Task-01
+Build a Temperature Conversion Program
+
+Create a program that converts temperatures between Celsius, Fahrenheit, and
+Kelvin scales. The program should prompt the user to input a temperature
+value and the original unit of measurement. It should then convert the
+temperature to the other two units and display the convertedvalues to the
+user. For example, if the user enters a temperatureof 25 degrees Celsius,
+the program should convert it to Fahrenheit and Kelvin, and present the
+converted values as outputs."""
+
+
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+def celsius_to_kelvin(celsius):
+    return celsius + 273.15
+
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5/9
+
+def fahrenheit_to_kelvin(fahrenheit):
+    return (fahrenheit + 459.67) * 5/9
+
+def kelvin_to_celsius(kelvin):
+    return kelvin - 273.15
+
+def kelvin_to_fahrenheit(kelvin):
+    return (kelvin * 9/5) - 459.67
+
+def convert_temperature(value, unit):
+    if unit.lower() == 'c':
+        celsius = value
+        fahrenheit = celsius_to_fahrenheit(celsius)
+        kelvin = celsius_to_kelvin(celsius)
+    elif unit.lower() == 'f':
+        fahrenheit = value
+        celsius = fahrenheit_to_celsius(fahrenheit)
+        kelvin = fahrenheit_to_kelvin(fahrenheit)
+    elif unit.lower() == 'k':
+        kelvin = value
+        celsius = kelvin_to_celsius(kelvin)
+        fahrenheit = kelvin_to_fahrenheit(kelvin)
+    else:
+        raise ValueError("Invalid unit of temperature. Please use 'C' for Celsius, 'F' for Fahrenheit, or 'K' for Kelvin.")
+    
+    return celsius, fahrenheit, kelvin
+
+def main():
+    try:
+        value = float(input("Enter the temperature value: "))
+        unit = input("Enter the unit of the temperature (C, F, K): ")
+        
+        celsius, fahrenheit, kelvin = convert_temperature(value, unit)
+        
+        print(f"Temperature in Celsius: {celsius:.2f}°C")
+        print(f"Temperature in Fahrenheit: {fahrenheit:.2f}°F")
+        print(f"Temperature in Kelvin: {kelvin:.2f}K")
+    except ValueError as e:
+        print(e)
+
+if __name__ == "__main__":
+    main()
